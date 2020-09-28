@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.mapas.MapsActivity;
 import com.example.mapas.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -52,7 +50,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             mapView.getMapAsync(this);
         }
 
+
+
+
     }
+
+
+
+
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -61,7 +67,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         LatLng place = new LatLng(4.60971, -74.08175);
 
 
-        
+
         gMap.addMarker(new MarkerOptions().position(place).title("Marker in bogota").draggable(true));
         gMap.moveCamera(CameraUpdateFactory.newLatLng(place));
 
