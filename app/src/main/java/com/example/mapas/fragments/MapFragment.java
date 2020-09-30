@@ -126,6 +126,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onMarkerDragStart(Marker marker) {
+        marker.hideInfoWindow();
 
     }
 
@@ -156,6 +157,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 "address: " + address + "\n" +
                         "city: " + city
         );
+        marker.showInfoWindow();
 
 //        Toast.makeText(getContext(),
 //                "address: " + address + "\n" +
