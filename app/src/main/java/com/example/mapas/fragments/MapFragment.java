@@ -19,6 +19,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -35,6 +36,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     private List<Address> addresses;
     private Geocoder geocoder;
+
+    private MarkerOptions marker;
+
+
 
 
     public MapFragment() {
@@ -70,7 +75,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
         CameraUpdate zoom = CameraUpdateFactory.zoomTo(15);
 
-        gMap.addMarker(new MarkerOptions().position(place).title("Marker in bogota").draggable(true));
+        /**
+         * customizar marcador
+         */
+        marker=new MarkerOptions();
+        marker.draggable(true);
+        marker.position(place);
+        marker.title("Mi Marcador");
+        marker.snippet(" esto es uan caja de texto para modificar");
+        marker.icon(BitmapDescriptorFactory.fromResource(android.R.drawable.star_on));
+
+        gMap.addMarker(marker);
+//        gMap.addMarker(new MarkerOptions().position(place).title("Marker in bogota").draggable(true));
         gMap.moveCamera(CameraUpdateFactory.newLatLng(place));
         gMap.animateCamera(zoom);
 
@@ -136,13 +152,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         String postalCode = addresses.get(0).getPostalCode();
 
 
-        Toast.makeText(getContext(),
+        marker.setSnippet(
                 "address: " + address + "\n" +
-                        "city: " + city + "\n" +
-                        "state: " + state + "\n" +
-                        "country: " + country + "\n" +
-                        "postalCode: " + postalCode
-                , Toast.LENGTH_SHORT).show();
+                        "city: " + city
+        );
+
+//        Toast.makeText(getContext(),
+//                "address: " + address + "\n" +
+//                        "city: " + city + "\n" +
+//                        "state: " + state + "\n" +
+//                        "country: " + country + "\n" +
+//                        "postalCode: " + postalCode
+//                , Toast.LENGTH_SHORT).show();
 
 
     }
