@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.example.mapas.R;
 import com.example.mapas.fragments.MapFragment;
@@ -24,8 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        currentFragment=new WelcomeFragment();
-        changeFragment(currentFragment);
+
+        /**
+         * controlando la rotacion
+         */
+        Toast.makeText(this, "called", Toast.LENGTH_SHORT).show();
+        if (savedInstanceState==null){
+            currentFragment=new WelcomeFragment();
+            changeFragment(currentFragment);
+        }
+
+
     }
 
     @Override
