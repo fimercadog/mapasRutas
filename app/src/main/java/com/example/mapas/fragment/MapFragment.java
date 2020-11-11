@@ -38,6 +38,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import es.dmoral.toasty.Toasty;
+
 public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener, View.OnClickListener {
 
     private View rootView;
@@ -63,6 +65,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container, false);
+//        TODO:revisar fab
         fab = rootView.findViewById(R.id.fba);
         fab.setOnClickListener(this);
         return rootView;
@@ -80,11 +83,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     }
 
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        locationManager= (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
@@ -101,8 +103,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         }
         mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(false);
-
-
 
 
         LatLng place = new LatLng(4.60971, -74.08175);
@@ -131,19 +131,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
         geocoder = new Geocoder(getContext(), Locale.getDefault());
     }
 
-
-    private boolean checkIfGPSIsEnabel() {
+// TODO:REVISAR checkIfGPSIsEnabel
+    private void checkIfGPSIsEnabel() {
         try {
             int gpsSignal = Settings.Secure.getInt(getActivity().getContentResolver(), Settings.Secure.LOCATION_MODE);
             if (gpsSignal != 0) {
 //                el gps no esta activo
-                return true;
-            } else {
-                return false;
+
             }
         } catch (Settings.SettingNotFoundException e) {
             e.printStackTrace();
-            return false;
+
         }
     }
 
@@ -198,6 +196,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
                 "address: " + postalCode);
         marker.showInfoWindow();
 
+        Toasty.info(getContext(), "address: " + address + "\n" +
+                        "address: " + city + "\n" +
+                        "address: " + state + "\n" +
+                        "address: " + country + "\n" +
+                        "address: " + postalCode + "\n"
+                , Toast.LENGTH_LONG).show();
+
 //        Toast.makeText(getContext(), "address: " + address + "\n" +
 //                        "address: " + city + "\n" +
 //                        "address: " + state + "\n" +
@@ -208,8 +213,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
 
     @Override
     public void onClick(View v) {
-        if (!this.checkIfGPSIsEnabel()) {
-            showInfoAlert();
-        }
+        showInfoAlert();
     }
 }
+
+
+
