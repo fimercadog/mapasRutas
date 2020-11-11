@@ -60,50 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .tilt(30)       //efecto 3d limit 90
                 .build();
 
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                Toast.makeText(MapsActivity.this, "Click on: \n" +
-                        "Lat: "+latLng.latitude+"\n"+
-                        "Lon: "+latLng.longitude+"\n",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(LatLng latLng) {
-                Toast.makeText(MapsActivity.this, "Long Click on: \n" +
-                                "Lat: "+latLng.latitude+"\n"+
-                                "Lon: "+latLng.longitude+"\n",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-                
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                Toast.makeText(MapsActivity.this, "Market dragged to: \n" +
-                                "Lat: "+marker.getPosition().latitude+"\n"+
-                                "Lon: "+marker.getPosition().longitude+"\n",
-                        Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
 
     }

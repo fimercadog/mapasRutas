@@ -18,10 +18,10 @@
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_gravity="bottom|end"
-        android:contentDescription="@string/todo"
         android:focusable="true"
         app:borderWidth="0dp"
         android:src="@android:drawable/ic_menu_compass"
-        app:backgroundTint="@color/colorAccent"/>
+        app:backgroundTint="@color/colorAccent"
+        android:layout_margin="16dp" />
 
 </FrameLayout>
